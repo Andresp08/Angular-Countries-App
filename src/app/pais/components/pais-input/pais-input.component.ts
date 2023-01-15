@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, Input } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
 
 @Component({
@@ -12,15 +12,16 @@ export class PaisInputComponent implements OnInit{
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
 
-  //tipo de observable que permite emitir valores
+  @Input('placeholder') placeholder:string = "";
+
   debouncer:Subject<string> = new Subject(); 
 
   termino:string = '';
 
-  ngOnInit(): void { //cuando el componente es creado y ya está inicializado
+  ngOnInit(): void { 
     this.debouncer
     .pipe(debounceTime(300)) 
-    .subscribe(valor => { //no llega hasta que el observable deje de emitir valor por los proximos 300 ms
+    .subscribe(valor => { 
       this.onDebounce.emit(valor);
     })
   }
