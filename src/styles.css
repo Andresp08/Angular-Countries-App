@@ -2,3 +2,11 @@
 .small-flag{
     width: 50px;
 }
+.sugerencias-flag{
+    width: 45px;
+    margin-right: 5px;
+}
+
+.mr-5{
+    margin-right: 10px!important;
+}

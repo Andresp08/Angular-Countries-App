@@ -5,10 +5,28 @@
     <app-pais-input
       (onEnter)="buscar($event)"
       (onDebounce)="sugerencias($event)"
-      placeholder="Buscar país..."
-    ></app-pais-input>
+      placeholder="Buscar país...">
+    </app-pais-input>
   </div>
 </div>
+
+<ul *ngIf="mostrarSugerencias" class="list-group">
+  <li *ngFor="let pais of paisesSugeridos"
+    class="list-group-item list-group-item-action">
+    <a class="d-flex nav-link ml-4" [routerLink]="['/pais', pais.cca2]">
+      <img class="sugerencias-flag" [src]="pais.flags.png" [alt]="pais.name.common">
+      <p class="m-0">
+        {{ pais.name.common }}
+      </p>
+    </a>
+  </li>
+  <li class="list-group-item list-group-item-action" 
+    (click)="buscarSugerido(termino)">
+    <a class="nav-link">
+      Buscar "{{ termino }}"
+    </a>
+  </li>
+</ul>
 
 <hr />
 

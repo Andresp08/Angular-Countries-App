@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 
 import { PaisService } from '../../services/pais.service';
-import { Country } from '../../interfaces/pais.interfaces';
+import { Country, Translation } from '../../interfaces/pais.interfaces';
 
 @Component({
   selector: 'app-ver-pais',
@@ -15,7 +15,6 @@ export class VerPaisComponent implements OnInit {
   pais!: Country;
   languages!: string[];
   borders!: string[];
-  //translations!: string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -34,8 +33,6 @@ export class VerPaisComponent implements OnInit {
         this.pais = pais[0]; 
         this.languages = Object.values(this.pais.languages);
         this.borders = Object.values(this.pais.borders);
-        //this.translations = Object.values(this.pais.translations)
-        
       });
   }
 }

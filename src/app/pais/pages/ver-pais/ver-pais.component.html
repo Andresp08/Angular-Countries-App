@@ -1,43 +1,58 @@
-<div
-    *ngIf="!pais; else divPais"
-    class="alert alert-info">
-    Espere por favor....
+<div *ngIf="!pais; else divPais" class="alert alert-info">
+  Espere por favor....
 </div>
 
 <ng-template #divPais>
-
-    <div class="row">
-        <div class="col-12">
-            <h1>País: <small>{{pais.name.common}}</small> </h1>
-        </div>
+  <div class="row">
+    <div class="col-12">
+      <h1>
+        País: <small>{{ pais.name.common }}</small>
+      </h1>
     </div>
+  </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Bandera</h3>
-            <img [src]="pais.flags.png" [alt]="pais.name.common" class="img-thumbnail">
-        </div>
-        <div class="col-md-6">
-            <h3>Información</h3>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <strong>Problación</strong> {{ pais.population | number }}
-                </li>
-                <li class="list-group-item">
-                    <p class="d-block m-0">Idiomas:</p>
-                    <strong *ngFor="let language of languages" class="mx-1 d-block">{{ language }}</strong> 
-                </li>
-                <li class="list-group-item">
-                    <strong *ngFor="let border of borders" class="mx-1">Fronteras: {{ border }}</strong> 
-                </li>
-                
-            </ul>
-        </div>
+  <div class="row">
+    <div class="col-md-6">
+      <h3>Bandera</h3>
+      <img
+        [src]="pais.flags.png"
+        [alt]="pais.name.common"
+        class="img-thumbnail"
+      />
     </div>
-
-    <div class="row">
+    <div class="col-md-6">
+      <h3>Información</h3>
+      <ul class="list-group">
         <li class="list-group-item">
-            <strong *ngFor="let border of borders" class="mx-1">Fronteras: {{ border }}</strong> 
+          <strong>Problación</strong> {{ pais.population | number }}
         </li>
+        <li class="list-group-item">
+          <div class="d-flex">
+            <p class="d-block m-0">Idiomas:</p>
+            <strong *ngFor="let language of languages" class="mx-1 d-block">{{
+              language
+            }}</strong>
+          </div>
+        </li>
+        <li class="list-group-item">
+        <div class="d-flex">
+            Fronteras:
+            <strong *ngFor="let border of borders" class="mx-1">{{ border }}</strong>
+        </div>
+        </li>
+      </ul>
     </div>
+  </div>
+
+  <div class="row">
+    <li class="list-group-item">
+      <p class="m-0 mt-2">Translations</p>
+      <span
+        *ngFor="let t of pais.translations | keyvalue"
+        class="badge bg-primary mr-5"
+      >
+        {{ t.value.official }}
+      </span>
+    </li>
+  </div>
 </ng-template>
